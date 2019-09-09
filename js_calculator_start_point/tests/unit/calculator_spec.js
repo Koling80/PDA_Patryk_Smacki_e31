@@ -11,43 +11,50 @@ describe('calculator', function () {
     assert.equal(true, true)
   });
 
-  it("should add 1 to 4 and get 5", function() {
-    calculator.previousTotal = 4;
-    calculator.add(1);
-    assert.strictEqual(calculator.runningTotal, 5);
-  });
+  it('can add any numbers', function() {
+    calculator.previousTotal = 6;
+    calculator.add(4)
+    assert.equal(10, calculator.runningTotal)
+  })
 
-  it("should subtract 4 from 7 and get 3", function(){
+  it('can subtract numbers', function() {
+    calculator.previousTotal = 8;
+    calculator.subtract(4)
+    assert.equal(4, calculator.runningTotal)
+  })
+
+  it('can multiply numbers', function() {
     calculator.previousTotal = 7;
-    calculator.subtract(4);
-    assert.strictEqual(calculator.runningTotal, 3);
-  });
+    calculator.multiply(5)
+    assert.equal(35, calculator.runningTotal)
+  })
 
-  it("should multiply 3 by 5 and get 15", function(){
-    calculator.previousTotal = 5;
-    calculator.multiply(3);
-    assert.strictEqual(calculator.runningTotal, 15);
-  });
+  it('can divide numbers', function() {
+    calculator.previousTotal = 15;
+    calculator.divide(3);
+    assert.equal(5, calculator.runningTotal)
+  })
 
-  it("should divide 21 by 7 and get 3", function(){
-    calculator.previousTotal = 21;
-    calculator.divide(7);
-    assert.strictEqual(calculator.runningTotal, 3);
-  });
 
-  it("should concatenate multiple number button clicks", function(){
+//integration
+
+  it("should concatenate concatenate number button clicks", function(){
     calculator.numberClick(1)
     calculator.numberClick(2)
-    assert.strictEqual(calculator.runningTotal, 12)
-  });
+    assert.strictEqual(12, calculator.runningTotal)
+  })
 
-  it('it can add numbers', function(){
+  it('can chain multiple operations', function(){
    calculator.numberClick(1);
    calculator.operatorClick("+");
    calculator.numberClick(4);
+   calculator.operatorClick("+")
+   calculator.numberClick(1);
+   calculator.operatorClick("/")
+   calculator.numberClick(3);
    calculator.operatorClick("=");
-   assert.equal(5, calculator.runningTotal)
-  });
+   assert.equal(2, calculator.runningTotal)
+  })
 
   it('it can subtract numbers', function(){
    calculator.numberClick(7);
@@ -55,7 +62,7 @@ describe('calculator', function () {
    calculator.numberClick(4);
    calculator.operatorClick("=");
    assert.equal(3, calculator.runningTotal)
-  });
+  })
 
   it('it can multiply numbers', function(){
    calculator.numberClick(5);
@@ -63,7 +70,7 @@ describe('calculator', function () {
    calculator.numberClick(3);
    calculator.operatorClick("=");
    assert.equal(15, calculator.runningTotal)
-  });
+  })
 
   it('it can divide numbers', function(){
    calculator.numberClick(21);
@@ -71,13 +78,15 @@ describe('calculator', function () {
    calculator.numberClick(7);
    calculator.operatorClick("=");
    assert.equal(3, calculator.runningTotal)
-  });
+  })
 
 
-  it('should clear the running total without affecting the calculation', function() {
-    calculator.runningTotal = 6;
+  it('should clear numbers without affecting the calculation', function() {
+    calculator.numberClick(2);
+    calculator.operatorClick("+")
+    calculator.numberClick(3);
     calculator.clearClick();
-    assert.strictEqual(calculator.runningTotal, 0);
-  });
-
-});
+    calculator.numberClick(4);
+    calculator.operatorClick("=")
+    assert.equal(6, calculator.runningTotal)
+  })

@@ -19,29 +19,29 @@ describe('calculator functionality', function() {
   // number buttons update the display of the running total
     it('should update display of running total on number click', function() {
       running_total = element(by.css('#running_total'));
-      element(by.css('#number7')).click();
-      element(by.css('#number6')).click();
-      expect(running_total.getAttribute('value')).to.eventually.equal('76');
+      element(by.css('#number1')).click();
+      element(by.css('#number5')).click();
+      expect(running_total.getAttribute('value')).to.eventually.equal('15');
     });
 
-    // arithmetical operations update the display with the result of the operation
-    it('should update display with result of operation', function() {
+
+    it('should update display with result of of arithmetical operations', function() {
       running_total = element(by.css('#running_total'));
-      element(by.css('#number8')).click();
+      element(by.css('#number7')).click();
       element(by.css('#operator_multiply')).click();
-      element(by.css('#number8')).click();
+      element(by.css('#number5')).click();
       element(by.css('#operator_subtract')).click();
-      expect(running_total.getAttribute('value')).to.eventually.equal('64');
+      expect(running_total.getAttribute('value')).to.eventually.equal('35');
     });
 
     // chain multiple operations together
     it('should update display with result of operation', function() {
       running_total = element(by.css('#running_total'));
-      element(by.css('#number2')).click();
+      element(by.css('#number3')).click();
       element(by.css('#operator_multiply')).click();
-      element(by.css('#number4')).click();
+      element(by.css('#number5')).click();
       element(by.css('#operator_subtract')).click();
-      element(by.css('#number8')).click();
+      element(by.css('#number15')).click();
       element(by.css('#operator_equals')).click();
       expect(running_total.getAttribute('value')).to.eventually.equal('0');
     });
@@ -50,11 +50,11 @@ describe('calculator functionality', function() {
     // negative result
     it('should display expected number for results lower than 0', function() {
       running_total = element(by.css('#running_total'));
-      element(by.css('#number2')).click();
+      element(by.css('#number3')).click();
       element(by.css('#operator_subtract')).click();
-      element(by.css('#number9')).click();
+      element(by.css('#number5')).click();
       element(by.css('#operator_equals')).click();
-      expect(running_total.getAttribute('value')).to.eventually.equal('-7');
+      expect(running_total.getAttribute('value')).to.eventually.equal('-2');
     });
 
     // decimal result
@@ -74,14 +74,22 @@ describe('calculator functionality', function() {
       element(by.css('#number3')).click();
       element(by.css('#number4')).click();
       element(by.css('#number5')).click();
-      element(by.css('#operator_multiply')).click();
       element(by.css('#number6')).click();
       element(by.css('#number7')).click();
       element(by.css('#number8')).click();
       element(by.css('#number9')).click();
-      element(by.css('#number0')).click();
+      element(by.css('#operator_add')).click();
+      element(by.css('#number1')).click();
+      element(by.css('#number2')).click();
+      element(by.css('#number3')).click();
+      element(by.css('#number4')).click();
+      element(by.css('#number5')).click();
+      element(by.css('#number6')).click();
+      element(by.css('#number7')).click();
+      element(by.css('#number8')).click();
+      element(by.css('#number9')).click();
       element(by.css('#operator_equals')).click();
-      expect(running_total.getAttribute('value')).to.eventually.equal('838102050')
+      expect(running_total.getAttribute('value')).to.eventually.equal('246913578')
     });
 
     // number divided by zero displays 'Not a number'
